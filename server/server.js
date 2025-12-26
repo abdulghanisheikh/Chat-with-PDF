@@ -2,12 +2,13 @@ import {config} from "dotenv";
 config();
 import express from "express";
 const app=express();
-import uploadRoute from "./routes/upload.route.js";
 import cors from "cors";
+import uploadRoute from "./routes/upload.route.js";
 
 app.use(cors());
 app.use("/upload",uploadRoute);
 
+//sample route
 app.get("/",(req,res)=>{
     return res.json({
         message:"Hello from server"
