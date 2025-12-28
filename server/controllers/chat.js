@@ -4,7 +4,7 @@ import {ChatGroq} from "@langchain/groq";
 
 export async function chat(req,res){
     try{
-        const userQuery="What this PDF is about?";
+        const userQuery=req.query;
         const embeddings=new HuggingFaceInferenceEmbeddings({
             apiKey:process.env.HF_API_KEY,
             model:"sentence-transformers/all-MiniLM-L6-v2"
