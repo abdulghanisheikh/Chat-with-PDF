@@ -4,7 +4,7 @@ import {ChatGroq} from "@langchain/groq";
 
 export async function chat(req,res){
     try{
-        const userQuery=req.query;
+        const userQuery=req.query.message;
         const embeddings=new HuggingFaceInferenceEmbeddings({
             apiKey:process.env.HF_API_KEY,
             model:"sentence-transformers/all-MiniLM-L6-v2"
@@ -24,7 +24,7 @@ export async function chat(req,res){
             maxRetries:2,
         });
         const systemPrompt=`
-            You are an expert AI assistant which resolves the user queries based on the context of the pdf.
+            You are an expert AI assistant who resolves the user query based on the context of the pdf.
             PDF Context: ${JSON.stringify(similarVectorSearch)}
         `;
         const aiMsg=await llm.invoke([{
@@ -36,8 +36,7 @@ export async function chat(req,res){
         }]);
         return res.json({
             success:true,
-            query:userQuery,
-            aiMsg:aiMsg.content
+            message:aiMsg.content
         });
     }
     catch(err){
