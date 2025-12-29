@@ -5,14 +5,14 @@ import UploadPDF from "../components/UploadPDF";
 import Chat from "../components/Chat";
 
 const page=()=>{
-  return <div className='h-screen w-screen flex flex-col bg-neutral-900'>
+  return <div className='h-screen w-screen flex flex-col bg-zinc-900'>
     <Navbar></Navbar>
-    <div className='main flex h-full w-full bg-zinc-900 text-white'>
-      <div className="flex justify-center items-center h-full w-[35vw]">
+    <div className='main h-full w-full flex text-white'>
+      <div className="left w-[35vw] flex justify-center items-center">
         <UploadPDF />
       </div>
-      <div className="right h-full w-[65vw] border-l-2 border-white p-2">
-        <Chat></Chat>
+      <div className="right w-[65vw] border-l-2 border-white/50 p-2">
+        <Chat />
       </div>
     </div>
   </div>

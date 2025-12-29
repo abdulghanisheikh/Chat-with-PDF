@@ -1,5 +1,6 @@
 import React from 'react';
 import { Upload } from 'lucide-react';
+import axios from "axios";
 
 const UploadPDF=()=>{
     const baseUrl="http://localhost:8000";
@@ -12,16 +13,14 @@ const UploadPDF=()=>{
                 const formData=new FormData();
                 const pdfFile=el.files[0];
                 formData.append("pdf",pdfFile);
-                const res=await axios.post(`${baseUrl}/upload/pdf`,{formData});
-                const {success,message}=res.data;
-                if(success){
-                    
-                }
+                const res=await axios.post(`${baseUrl}/upload/pdf`,formData);
+                const {message}=res.data;
+                console.log(message);
             });
             el.click();
         }
         catch(err){
-            console.log(err);
+            console.log(err.response?.data?.message);
         }
     }
 
